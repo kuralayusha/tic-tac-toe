@@ -7,12 +7,23 @@ import React from 'react'
 
 function App() {
   const [page, setPage] = useState('home')
+  const [playerOneIcon, setPlayerOneIcon] = useState('')
 
   return (
     <div className="App">
-      {page === 'home' && <HomePage setPage={setPage} />}
-      {page === 'pvp' && <Pvp setPage={setPage} />}
-      {page === 'pvc' && <Pvc setPage={setPage} />}
+      {page === 'home' && (
+        <HomePage
+          setPage={setPage}
+          setPlayerOneIcon={setPlayerOneIcon}
+          playerOneIcon={playerOneIcon}
+        />
+      )}
+      {page === 'pvp' && (
+        <Pvp setPage={setPage} playerOneIcon={playerOneIcon} />
+      )}
+      {page === 'pvc' && (
+        <Pvc setPage={setPage} playerOneIcon={playerOneIcon} />
+      )}
     </div>
   )
 }
