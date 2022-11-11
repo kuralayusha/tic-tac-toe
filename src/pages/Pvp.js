@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Square from './Square'
+import ExitPage from './ExitPage'
 
 function Pvp({ playerOneIcon, setPage }) {
   const [squares, setSquares] = useState([
@@ -13,12 +14,79 @@ function Pvp({ playerOneIcon, setPage }) {
     '',
     '',
   ])
-  const [isX, setIsX] = useState(playerOneIcon === 'X' ? true : false)
+  const [isX, setIsX] = useState(true)
+  const [scoreX, setScoreX] = useState(0)
+  const [scoreO, setScoreO] = useState(0)
+  const [scoreTie, setScoreTie] = useState(0)
+  const [askExit, setAskExit] = useState(false)
 
   function handleClick(i) {
+    if (calculateWinner(squares) || squares[i]) {
+      return
+    }
+
     squares[i] = isX ? 'X' : 'O'
     setSquares(squares)
     setIsX(!isX)
+  }
+
+  const winner = calculateWinner(squares)
+  let status
+
+  if (winner) {
+    status = `Winner: ${winner}`
+    console.log('winner')
+  } else if (squares.every((square) => square !== '')) {
+    status = `ties`
+  } else {
+    status = `${isX ? 'X' : 'O'} Turn`
+  }
+
+  useEffect(() => {
+    if (status === 'ties') {
+      setScoreTie(scoreTie + 1)
+    } else if (status === 'Winner: O') {
+      setScoreO(scoreO + 1)
+    } else if (status === 'Winner: X') {
+      setScoreX(scoreX + 1)
+    }
+  }, [status])
+
+  console.log(scoreX, scoreTie, scoreO)
+
+  function calculateWinner(squares) {
+    const winningPatterns = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ]
+    for (let i = 0; i < winningPatterns.length; i++) {
+      const [a, b, c] = winningPatterns[i]
+
+      if (
+        squares[a] &&
+        squares[a] === squares[b] &&
+        squares[a] === squares[c]
+      ) {
+        return squares[a]
+      }
+    }
+    return null
+  }
+
+  function exitQuestion() {
+    setAskExit(true)
+  }
+
+  const renderSquare = (i) => {
+    return (
+      <Square value={squares[i]} onClick={() => handleClick(i)} />
+    )
   }
 
   return (
@@ -28,33 +96,45 @@ function Pvp({ playerOneIcon, setPage }) {
       alt bölümde -1.oyuncuSkoru -beraberlikSkoru -2.oyuncuSkoru*/}
       <div className="topBar">
         {/* icon */}
-        {/* sıra kimde */}
+        {status}
         {/* baştan başlama */}
+        <button onClick={exitQuestion}>Baştan Başla</button>
       </div>
 
       <div className="gameBoard">
         <div className="board--row">
-          <Square value={squares[0]} onClick={() => handleClick(0)} />
-          <Square value={squares[1]} onClick={() => handleClick(1)} />
-          <Square value={squares[2]} onClick={() => handleClick(2)} />
+          {renderSquare(0)}
+          {renderSquare(1)}
+          {renderSquare(2)}
         </div>
         <div className="board--row">
-          <Square value={squares[3]} onClick={() => handleClick(3)} />
-          <Square value={squares[4]} onClick={() => handleClick(4)} />
-          <Square value={squares[5]} onClick={() => handleClick(5)} />
+          {renderSquare(3)}
+          {renderSquare(4)}
+          {renderSquare(5)}
         </div>
         <div className="board--row">
-          <Square value={squares[6]} onClick={() => handleClick(6)} />
-          <Square value={squares[7]} onClick={() => handleClick(7)} />
-          <Square value={squares[8]} onClick={() => handleClick(8)} />
+          {renderSquare(6)}
+          {renderSquare(7)}
+          {renderSquare(8)}
         </div>
       </div>
 
       <div className="scoreBoard">
-        {/* 1.oyuncuSkoru */}
-        {/* beraberlikSkoru */}
-        {/* 2.oyuncuSkoru */}
+        <div className="scoreX">{scoreX}</div>
+        <div className="scoreTie">{scoreTie}</div>
+        <div className="scoreO">{scoreO}</div>
       </div>
+      {askExit && (
+        <ExitPage
+          setPage={setPage}
+          setSquares={setSquares}
+          setIsX={setIsX}
+          setAskExit={setAskExit}
+          setScoreX={setScoreX}
+          setScoreO={setScoreO}
+          setScoreTie={setScoreTie}
+        />
+      )}
     </div>
   )
 }

@@ -4,6 +4,7 @@ import Pvp from './pages/Pvp'
 import Pvc from './pages/Pvc'
 import HomePage from './pages/HomePage'
 import React from 'react'
+import ExitPage from './pages/ExitPage'
 
 function App() {
   const [page, setPage] = useState('home')
