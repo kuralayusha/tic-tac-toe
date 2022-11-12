@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Square from './Square'
 import ExitPage from './ExitPage'
+import GameOverPage from './GameOverPage'
 
 function Pvp({ playerOneIcon, setPage }) {
   const [squares, setSquares] = useState([
@@ -19,6 +20,7 @@ function Pvp({ playerOneIcon, setPage }) {
   const [scoreO, setScoreO] = useState(0)
   const [scoreTie, setScoreTie] = useState(0)
   const [askExit, setAskExit] = useState(false)
+  const [showGameOver, setShowGameOver] = useState(false)
 
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
@@ -33,28 +35,30 @@ function Pvp({ playerOneIcon, setPage }) {
   const winner = calculateWinner(squares)
   let status
 
-  if (winner) {
-    status = `Winner: ${winner}`
-    console.log('winner')
-  } else if (squares.every((square) => square !== '')) {
-    status = `ties`
-  } else {
-    status = `${isX ? 'X' : 'O'} Turn`
-  }
-
   useEffect(() => {
+    if (winner) {
+      status = `${winner}`
+      setShowGameOver(true)
+    } else if (squares.every((square) => square !== '')) {
+      status = `ties`
+      setShowGameOver(true)
+    } else {
+      status = `${isX ? 'X' : 'O'} TURN`
+    }
+
     if (status === 'ties') {
       setScoreTie(scoreTie + 1)
-    } else if (status === 'Winner: O') {
+    } else if (status === 'O') {
       setScoreO(scoreO + 1)
-    } else if (status === 'Winner: X') {
+    } else if (status === 'X') {
       setScoreX(scoreX + 1)
     }
-  }, [status])
+  }, [squares, isX, winner])
 
   console.log(scoreX, scoreTie, scoreO)
 
   function calculateWinner(squares) {
+    console.log('winner bulmayı denedim')
     const winningPatterns = [
       [0, 1, 2],
       [3, 4, 5],
@@ -88,16 +92,11 @@ function Pvp({ playerOneIcon, setPage }) {
       <Square value={squares[i]} onClick={() => handleClick(i)} />
     )
   }
-
   return (
     <div>
-      {/* TODO: en üstte -icon -sıraKimde -baştanBaşlama
-      orta bölümde 3x3 oyun alanı
-      alt bölümde -1.oyuncuSkoru -beraberlikSkoru -2.oyuncuSkoru*/}
       <div className="topBar">
         {/* icon */}
         {status}
-        {/* baştan başlama */}
         <button onClick={exitQuestion}>Baştan Başla</button>
       </div>
 
@@ -124,17 +123,33 @@ function Pvp({ playerOneIcon, setPage }) {
         <div className="scoreTie">{scoreTie}</div>
         <div className="scoreO">{scoreO}</div>
       </div>
-      {askExit && (
-        <ExitPage
-          setPage={setPage}
-          setSquares={setSquares}
-          setIsX={setIsX}
-          setAskExit={setAskExit}
-          setScoreX={setScoreX}
-          setScoreO={setScoreO}
-          setScoreTie={setScoreTie}
-        />
-      )}
+      <div>
+        {askExit && (
+          <ExitPage
+            setPage={setPage}
+            setSquares={setSquares}
+            setIsX={setIsX}
+            setAskExit={setAskExit}
+            setScoreX={setScoreX}
+            setScoreO={setScoreO}
+            setScoreTie={setScoreTie}
+          />
+        )}
+      </div>
+      <div>
+        {showGameOver ? (
+          <GameOverPage
+            winner={winner}
+            setPage={setPage}
+            setIsX={setIsX}
+            setSquares={setSquares}
+            setShowGameOver={setShowGameOver}
+            setScoreX={setScoreX}
+            setScoreO={setScoreO}
+            setScoreTie={setScoreTie}
+          />
+        ) : null}
+      </div>
     </div>
   )
 }
