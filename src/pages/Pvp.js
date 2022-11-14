@@ -3,7 +3,13 @@ import Square from './Square'
 import ExitPage from './ExitPage'
 import GameOverPage from './GameOverPage'
 
-function Pvp({ playerOneIcon, setPage }) {
+function Pvp({
+  playerOneIcon,
+  setPage,
+  gameMode,
+  setGameMode,
+  setPlayerOneIcon,
+}) {
   const [squares, setSquares] = useState([
     '',
     '',
@@ -22,6 +28,17 @@ function Pvp({ playerOneIcon, setPage }) {
   const [askExit, setAskExit] = useState(false)
   const [showGameOver, setShowGameOver] = useState(false)
 
+  const winner = calculateWinner(squares)
+  let status
+  let turn
+
+  turn = isX ? 'X TURN' : 'O TURN'
+  if (winner === 'X') {
+    turn = 'X TURN'
+  } else if (winner === 'O') {
+    turn = 'O TURN'
+  }
+
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
       return
@@ -32,9 +49,6 @@ function Pvp({ playerOneIcon, setPage }) {
     setIsX(!isX)
   }
 
-  const winner = calculateWinner(squares)
-  let status
-
   useEffect(() => {
     if (winner) {
       status = `${winner}`
@@ -42,8 +56,6 @@ function Pvp({ playerOneIcon, setPage }) {
     } else if (squares.every((square) => square !== '')) {
       status = `ties`
       setShowGameOver(true)
-    } else {
-      status = `${isX ? 'X' : 'O'} TURN`
     }
 
     if (status === 'ties') {
@@ -55,10 +67,8 @@ function Pvp({ playerOneIcon, setPage }) {
     }
   }, [squares, isX, winner])
 
-  console.log(scoreX, scoreTie, scoreO)
-
   function calculateWinner(squares) {
-    console.log('winner bulmayı denedim')
+    // console.log('winner bulmayı denedim')
     const winningPatterns = [
       [0, 1, 2],
       [3, 4, 5],
@@ -96,7 +106,7 @@ function Pvp({ playerOneIcon, setPage }) {
     <div>
       <div className="topBar">
         {/* icon */}
-        {status}
+        {turn}
         <button onClick={exitQuestion}>Baştan Başla</button>
       </div>
 
@@ -133,6 +143,8 @@ function Pvp({ playerOneIcon, setPage }) {
             setScoreX={setScoreX}
             setScoreO={setScoreO}
             setScoreTie={setScoreTie}
+            setPlayerOneIcon={setPlayerOneIcon}
+            setGameMode={setGameMode}
           />
         )}
       </div>
@@ -140,6 +152,7 @@ function Pvp({ playerOneIcon, setPage }) {
         {showGameOver ? (
           <GameOverPage
             winner={winner}
+            gameMode={gameMode}
             setPage={setPage}
             setIsX={setIsX}
             setSquares={setSquares}
@@ -147,6 +160,9 @@ function Pvp({ playerOneIcon, setPage }) {
             setScoreX={setScoreX}
             setScoreO={setScoreO}
             setScoreTie={setScoreTie}
+            setGameMode={setGameMode}
+            setPlayerOneIcon={setPlayerOneIcon}
+            playerOneIcon={playerOneIcon}
           />
         ) : null}
       </div>

@@ -1,9 +1,11 @@
 function HomePage(props) {
   function startPVP() {
+    props.setGameMode('pvp')
     props.setPage('pvp')
   }
 
   function startPVC() {
+    props.setGameMode('pvc')
     props.setPage('pvc')
   }
 

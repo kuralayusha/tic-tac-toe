@@ -6,6 +6,8 @@ function ExitPage({
   setScoreX,
   setScoreO,
   setScoreTie,
+  setGameMode,
+  setPlayerOneIcon,
 }) {
   function handleCancel() {
     setAskExit(false)
@@ -26,6 +28,8 @@ function ExitPage({
 
   function handleMenu() {
     setSquares(['', '', '', '', '', '', '', '', ''])
+    setPlayerOneIcon('X')
+    setGameMode('')
     setIsX(true)
     setAskExit(false)
     setScoreX(0)

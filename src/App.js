@@ -8,7 +8,10 @@ import ExitPage from './pages/ExitPage'
 
 function App() {
   const [page, setPage] = useState('home')
-  const [playerOneIcon, setPlayerOneIcon] = useState('')
+  const [playerOneIcon, setPlayerOneIcon] = useState('X')
+  const [gameMode, setGameMode] = useState('')
+
+  console.log(gameMode)
 
   return (
     <div className="App">
@@ -16,14 +19,27 @@ function App() {
         <HomePage
           setPage={setPage}
           setPlayerOneIcon={setPlayerOneIcon}
+          setGameMode={setGameMode}
           playerOneIcon={playerOneIcon}
         />
       )}
       {page === 'pvp' && (
-        <Pvp setPage={setPage} playerOneIcon={playerOneIcon} />
+        <Pvp
+          playerOneIcon={playerOneIcon}
+          gameMode={gameMode}
+          setPage={setPage}
+          setGameMode={setGameMode}
+          setPlayerOneIcon={setPlayerOneIcon}
+        />
       )}
       {page === 'pvc' && (
-        <Pvc setPage={setPage} playerOneIcon={playerOneIcon} />
+        <Pvc
+          playerOneIcon={playerOneIcon}
+          gameMode={gameMode}
+          setPage={setPage}
+          setGameMode={setGameMode}
+          setPlayerOneIcon={setPlayerOneIcon}
+        />
       )}
     </div>
   )

@@ -1,22 +1,20 @@
 function GameOverPage({
-  setPage,
-  setAskExit,
   setIsX,
-  setSquares,
+  setPage,
   setScoreX,
   setScoreO,
+  setSquares,
   setScoreTie,
-  winner,
+  setGameMode,
   setShowGameOver,
+  winner,
+  gameMode,
+  playerOneIcon,
+  setPlayerOneIcon,
+  cpuIcon,
 }) {
   let message = ''
-  if (winner === 'X') {
-    message = 'PLAYER 1 WINS'
-  } else if (winner === 'O') {
-    message = 'PLAYER 2 WINS'
-  } else {
-    message = 'ROUND TIED'
-  }
+  let title = ''
 
   function handleNextRound() {
     setSquares(['', '', '', '', '', '', '', '', ''])
@@ -26,6 +24,8 @@ function GameOverPage({
 
   function handleMainMenu() {
     setSquares(['', '', '', '', '', '', '', '', ''])
+    setPlayerOneIcon('X')
+    setGameMode('')
     setIsX(true)
     setScoreX(0)
     setScoreO(0)
@@ -38,15 +38,65 @@ function GameOverPage({
     window.location.href = 'https://github.com/kuralayusha'
   }
 
+  if (gameMode === 'pvp') {
+    if (playerOneIcon === 'X') {
+      if (winner === 'X') {
+        message = 'PLAYER 1 WINS'
+        title = 'TAKES THE ROUND'
+      } else if (winner === 'O') {
+        message = 'PLAYER 2 WINS'
+        title = 'TAKES THE ROUND'
+      } else {
+        message = ''
+        title = 'ROUND TIED'
+      }
+    } else {
+      if (winner === 'X') {
+        message = 'PLAYER 2 WINS'
+        title = 'TAKES THE ROUND'
+      } else if (winner === 'O') {
+        message = 'PLAYER 1 WINS'
+        title = 'TAKES THE ROUND'
+      } else {
+        message = ''
+        title = 'ROUND TIED'
+      }
+    }
+  } else if (gameMode === 'pvc') {
+    if (cpuIcon === 'O') {
+      if (winner === 'X') {
+        message = 'YOU WON'
+        title = 'TAKES THE ROUND'
+      } else if (winner === 'O') {
+        message = 'OH NO, YOU LOST...'
+        title = 'TAKES THE ROUND'
+      } else {
+        message = ''
+        title = 'ROUND TIED'
+      }
+    } else {
+      if (winner === 'X') {
+        message = 'OH NO, YOU LOST...'
+        title = 'TAKES THE ROUND'
+      } else if (winner === 'O') {
+        message = 'YOU WON'
+        title = 'TAKES THE ROUND'
+      } else {
+        message = ''
+        title = 'ROUND TIED'
+      }
+    }
+  }
+
   return (
     <div>
       <p>{`${message}`}</p>
       {winner === 'X' ? ( // if winner is X, show player 1 icon
-        <img src="#" alt="player1" />
+        <img src="#" alt="X" />
       ) : winner === 'O' ? ( // if winner is O, show player 2 icon
-        <img src="#" alt="player2" />
+        <img src="#" alt="O" />
       ) : null}{' '}
-      <h1>TAKES THE ROUND</h1>
+      {`${title}`}
       <div>
         <button onClick={handleQuit}>QUIT</button>
         <button onClick={handleMainMenu}>MAIN MENU</button>
