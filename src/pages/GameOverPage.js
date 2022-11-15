@@ -1,3 +1,8 @@
+import fullXIcon from '../assets/icon-x.svg'
+import emptyXIcon from '../assets/icon-x-outline.svg'
+import fullOIcon from '../assets/icon-o.svg'
+import emptyOIcon from '../assets/icon-o-outline.svg'
+
 function GameOverPage({
   setIsX,
   setPage,
@@ -89,18 +94,33 @@ function GameOverPage({
   }
 
   return (
-    <div>
-      <p>{`${message}`}</p>
-      {winner === 'X' ? ( // if winner is X, show player 1 icon
-        <img src="#" alt="X" />
-      ) : winner === 'O' ? ( // if winner is O, show player 2 icon
-        <img src="#" alt="O" />
-      ) : null}{' '}
-      {`${title}`}
-      <div>
-        <button onClick={handleQuit}>QUIT</button>
-        <button onClick={handleMainMenu}>MAIN MENU</button>
-        <button onClick={handleNextRound}>NEXT ROUND</button>
+    <div className="game--over--bg">
+      <div className="game--over--container">
+        <p className="message">{`${message}`}</p>
+        {winner === 'X' ? ( // if winner is X, show player 1 icon
+          <p className="title blue">
+            <img src={fullXIcon} alt="X" />
+            {title}
+          </p>
+        ) : winner === 'O' ? ( // if winner is O, show player 2 icon
+          <p className="title yellow">
+            <img src={fullOIcon} alt="O" />
+            {title}
+          </p>
+        ) : !winner ? (
+          <p className="title">{title}</p>
+        ) : null}{' '}
+        <div className="game--over--options">
+          <button className="handleMainMenu" onClick={handleMainMenu}>
+            MAIN MENU
+          </button>
+          <button className="handleQuit" onClick={handleQuit}>
+            QUIT
+          </button>
+          <button className="handleNRound" onClick={handleNextRound}>
+            NEXT ROUND
+          </button>
+        </div>
       </div>
     </div>
   )

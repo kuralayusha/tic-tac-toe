@@ -3,6 +3,9 @@ import Square from './Square'
 import ExitPage from './ExitPage'
 import GameOverPage from './GameOverPage'
 
+import logo from '../assets/logo.svg'
+import reStart from '../assets/icon-restart.svg'
+
 function Pvp({
   playerOneIcon,
   setPage,
@@ -103,11 +106,13 @@ function Pvp({
     )
   }
   return (
-    <div>
+    <div className="game--container">
       <div className="topBar">
-        {/* icon */}
-        {turn}
-        <button onClick={exitQuestion}>Baştan Başla</button>
+        <img src={logo} />
+        <p>{turn}</p>
+        <button onClick={exitQuestion}>
+          <img src={reStart} />
+        </button>
       </div>
 
       <div className="gameBoard">
@@ -129,9 +134,18 @@ function Pvp({
       </div>
 
       <div className="scoreBoard">
-        <div className="scoreX">{scoreX}</div>
-        <div className="scoreTie">{scoreTie}</div>
-        <div className="scoreO">{scoreO}</div>
+        <div className="scoreX">
+          {playerOneIcon === 'X' ? <p>X (P1)</p> : <p>X (P2)</p>}
+          <h6>{scoreX}</h6>
+        </div>
+        <div className="scoreTie">
+          <p>TIES</p>
+          <h6>{scoreTie}</h6>
+        </div>
+        <div className="scoreO">
+          {playerOneIcon === 'X' ? <p>O (P2)</p> : <p>O (P1)</p>}
+          <h6>{scoreO}</h6>
+        </div>
       </div>
       <div>
         {askExit && (

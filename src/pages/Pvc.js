@@ -182,9 +182,18 @@ function Pvc({
       </div>
 
       <div className="scoreBoard">
-        <div className="scoreX">{scoreX}</div>
-        <div className="scoreTie">{scoreTie}</div>
-        <div className="scoreO">{scoreO}</div>
+        <div className="scoreX">
+          {playerOneIcon === 'X' ? <p>X (YOU)</p> : <p>X (CPU)</p>}
+          {scoreX}
+        </div>
+        <div className="scoreTie">
+          <p>TIES</p>
+          {scoreTie}
+        </div>
+        <div className="scoreO">
+          {playerOneIcon === 'X' ? <p>O (CPU)</p> : <p>O (YOU)</p>}
+          {scoreO}
+        </div>
       </div>
       <div>
         {askExit && (
