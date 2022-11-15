@@ -396,3 +396,82 @@ body {
     background-color: #F2B137;
     box-shadow: inset 0px -4px 0px #CC8B13;
 }
+
+/*  */
+/* -----------------EXIT PAGE------------------ */
+/*  */
+
+.exit--bg {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.exit--container {
+    background-color: #1F3641;
+    width: 100%;
+    height: 228px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.exit--container p {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    letter-spacing: 1.5px;
+    color: #A8BFC9;
+    padding: 0;
+    margin: 0;
+}
+
+.exit--row {
+    /* background-color: #118C87; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.exit--row button {
+    width: 139px;
+    height: 52px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #1A2A33;
+}
+
+.hCancle {
+    background-color: #A8BFC9;
+    box-shadow: inset 0px -4px 0px #6B8997;
+}
+
+.hRestart {
+    background-color: #F2B137;
+    box-shadow: inset 0px -4px 0px #CC8B13;
+}
+
+.hMenu {
+    background-color: #31C3BD;
+    box-shadow: inset 0px -4px 0px #118C87;
+}
+
+.hQuit {
+    background-color: #A8BFC9;
+    box-shadow: inset 0px -4px 0px #6B8997;
+}

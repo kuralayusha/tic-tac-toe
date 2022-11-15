@@ -39,11 +39,26 @@ function ExitPage({
   }
 
   return (
-    <div>
-      <button onClick={handleCancel}>NO, CANCEL</button>
-      <button onClick={handleRestart}>Yes, RESTART</button>
-      <button onClick={handleMenu}>MAIN MENU</button>
-      <button onClick={handleQuit}>QUIT</button>
+    <div className="exit--bg">
+      <div className="exit--container">
+        <p>RESTART GAME?</p>
+        <div className="exit--row">
+          <button className="hCancle" onClick={handleCancel}>
+            NO, CANCEL
+          </button>
+          <button className="hQuit" onClick={handleQuit}>
+            QUIT
+          </button>
+        </div>
+        <div className="exit--row">
+          <button className="hMenu" onClick={handleMenu}>
+            MAIN MENU
+          </button>
+          <button className="hRestart" onClick={handleRestart}>
+            YES, RESTART
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
