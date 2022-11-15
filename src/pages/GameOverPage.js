@@ -29,7 +29,7 @@ function GameOverPage({
 
   function handleMainMenu() {
     setSquares(['', '', '', '', '', '', '', '', ''])
-    setPlayerOneIcon('X')
+    setPlayerOneIcon('O')
     setGameMode('')
     setIsX(true)
     setScoreX(0)

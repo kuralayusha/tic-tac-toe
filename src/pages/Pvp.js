@@ -5,6 +5,8 @@ import GameOverPage from './GameOverPage'
 
 import logo from '../assets/logo.svg'
 import reStart from '../assets/icon-restart.svg'
+import fullXIcon from '../assets/icon-x-grey.svg'
+import fullOIcon from '../assets/icon-o-grey.svg'
 
 function Pvp({
   playerOneIcon,
@@ -35,7 +37,7 @@ function Pvp({
   let status
   let turn
 
-  turn = isX ? 'X TURN' : 'O TURN'
+  turn = isX ? 'X' : 'O'
   if (winner === 'X') {
     turn = 'X TURN'
   } else if (winner === 'O') {
@@ -117,7 +119,10 @@ function Pvp({
     <div className="game--container">
       <div className="topBar">
         <img src={logo} />
-        <p>{turn}</p>
+        <p>
+          <img src={turn === 'X' ? `${fullXIcon}` : `${fullOIcon}`} />
+          <h6>TURN</h6>
+        </p>
         <button onClick={exitQuestion}>
           <img src={reStart} />
         </button>

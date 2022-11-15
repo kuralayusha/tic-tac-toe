@@ -28,7 +28,7 @@ function ExitPage({
 
   function handleMenu() {
     setSquares(['', '', '', '', '', '', '', '', ''])
-    setPlayerOneIcon('X')
+    setPlayerOneIcon('O')
     setGameMode('')
     setIsX(true)
     setAskExit(false)

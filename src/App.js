@@ -17,10 +17,10 @@ function App() {
     <div className="App">
       {page === 'home' && (
         <HomePage
-          setPage={setPage}
-          setPlayerOneIcon={setPlayerOneIcon}
-          setGameMode={setGameMode}
           playerOneIcon={playerOneIcon}
+          setPage={setPage}
+          setGameMode={setGameMode}
+          setPlayerOneIcon={setPlayerOneIcon}
         />
       )}
       {page === 'pvp' && (
