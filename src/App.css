@@ -222,6 +222,24 @@ body {
     height: 96px;
 }
 
+.square--button:hover {
+    background-image: none;
+}
+
+.square--button.turnX:hover {
+    background-image: url(./assets/icon-x-outline.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px;
+}
+
+.square--button.turnO:hover {
+    background-image: url(./assets/icon-o-outline.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px;
+}
+
 .square--button img {
     width: 40px;
 }
@@ -294,10 +312,6 @@ body {
     text-align: center;
     letter-spacing: 1.25px;
 }
-
-/*  */
-/*---------------------PVC--------------------- */
-/*  */
 
 /*  */
 /* -----------------GAME OVER------------------ */

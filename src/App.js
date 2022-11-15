@@ -8,7 +8,7 @@ import ExitPage from './pages/ExitPage'
 
 function App() {
   const [page, setPage] = useState('home')
-  const [playerOneIcon, setPlayerOneIcon] = useState('X')
+  const [playerOneIcon, setPlayerOneIcon] = useState('O')
   const [gameMode, setGameMode] = useState('')
 
   console.log(gameMode)

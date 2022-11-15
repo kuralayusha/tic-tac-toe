@@ -55,10 +55,14 @@ function Pvp({
   useEffect(() => {
     if (winner) {
       status = `${winner}`
-      setShowGameOver(true)
+      setTimeout(() => {
+        setShowGameOver(true)
+      }, 300)
     } else if (squares.every((square) => square !== '')) {
       status = `ties`
-      setShowGameOver(true)
+      setTimeout(() => {
+        setShowGameOver(true)
+      }, 300)
     }
 
     if (status === 'ties') {
@@ -102,7 +106,11 @@ function Pvp({
 
   const renderSquare = (i) => {
     return (
-      <Square value={squares[i]} onClick={() => handleClick(i)} />
+      <Square
+        value={squares[i]}
+        onClick={() => handleClick(i)}
+        isX={isX}
+      />
     )
   }
   return (

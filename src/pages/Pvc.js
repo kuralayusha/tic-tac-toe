@@ -4,6 +4,9 @@ import ExitPage from './ExitPage'
 import Square from './Square'
 import GameOverPage from './GameOverPage'
 
+import logo from '../assets/logo.svg'
+import reStart from '../assets/icon-restart.svg'
+
 function Pvc({
   playerOneIcon,
   setPage,
@@ -54,11 +57,15 @@ function Pvc({
     if (winner) {
       console.log('in useEffect winner')
       status = `${winner}`
-      setShowGameOver(true)
+      setTimeout(() => {
+        setShowGameOver(true)
+      }, 600)
     } else if (squares.every((square) => square !== '')) {
       console.log('in useEffect tie')
       status = `ties`
-      setShowGameOver(true)
+      setTimeout(() => {
+        setShowGameOver(true)
+      }, 600)
     }
 
     if (status === 'X') {
@@ -106,7 +113,11 @@ function Pvc({
 
   const renderSquare = (i) => {
     return (
-      <Square value={squares[i]} onClick={() => handleClick(i)} />
+      <Square
+        value={squares[i]}
+        onClick={() => handleClick(i)}
+        isX={isX}
+      />
     )
   }
 
@@ -134,7 +145,7 @@ function Pvc({
           handleCpuTurn()
           setIsX(!isX)
         }
-      }, 300)
+      }, 500)
     }
   }, [squares, isX, cpuIcon])
 
@@ -153,14 +164,13 @@ function Pvc({
   console.log(cpuIcon)
 
   return (
-    <div>
-      {/* TODO: en üstte -icon -sıraKimde -baştan başlama
-      orta bölümde 3x3 oyun alanı
-    alt bölümde -1.oyuncuSkoru -beraberlik -CPUSkoru*/}
+    <div className="game--container">
       <div className="topBar">
-        {/* icon */}
-        {turn}
-        <button onClick={exitQuestion}>Baştan Başla</button>
+        <img src={logo} />
+        <p>{turn}</p>
+        <button onClick={exitQuestion}>
+          <img src={reStart} />
+        </button>
       </div>
 
       <div className="gameBoard">
@@ -184,15 +194,15 @@ function Pvc({
       <div className="scoreBoard">
         <div className="scoreX">
           {playerOneIcon === 'X' ? <p>X (YOU)</p> : <p>X (CPU)</p>}
-          {scoreX}
+          <h6>{scoreX}</h6>
         </div>
         <div className="scoreTie">
           <p>TIES</p>
-          {scoreTie}
+          <h6>{scoreTie}</h6>
         </div>
         <div className="scoreO">
           {playerOneIcon === 'X' ? <p>O (CPU)</p> : <p>O (YOU)</p>}
-          {scoreO}
+          <h6>{scoreO}</h6>
         </div>
       </div>
       <div>
