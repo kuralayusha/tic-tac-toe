@@ -1,3 +1,7 @@
+import logo from '../assets/logo.svg'
+import iconX from '../assets/icon-x.svg'
+import iconO from '../assets/icon-o.svg'
+
 function HomePage(props) {
   function startPVP() {
     props.setGameMode('pvp')
@@ -19,22 +23,25 @@ function HomePage(props) {
   console.log(props.playerOneIcon)
   return (
     <div className="homePage--container">
-      <h1>Home Page</h1>
-      {/* icon */}
-      <div className="x--o--options">
-        <button className="x" onClick={selectIconX}>
-          X
-        </button>
-        <button className="o" onClick={selectIconO}>
-          O
-        </button>
+      <img src={logo} />
+      <div className="x--o--options--container">
+        <p>PICK PLAYER 1'S MARK</p>
+        <div className="options">
+          <button className="x" onClick={selectIconX}>
+            <img src={iconX} />
+          </button>
+          <button className="o" onClick={selectIconO}>
+            <img src={iconO} />
+          </button>
+        </div>
+        <small>REMEMBER : X GOES FIRST</small>
       </div>
       <div className="selectGameMode">
         <button className="pvc" onClick={startPVC}>
-          PVC
+          NEW GAME (VS CPU)
         </button>
         <button className="pvp" onClick={startPVP}>
-          PVP
+          NEW GAME (VS PLAYER)
         </button>
       </div>
     </div>
