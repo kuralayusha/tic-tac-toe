@@ -748,3 +748,106 @@ body {
         margin-top: 20px;
     }
 }
+
+/*  */
+/*------------------DESKTOP MODE-------------------------*/
+/*  */
+
+@media (min-width: 1440px) {
+
+    .homePage--container {
+        width: 460px;
+        height: 471px;
+        margin: 215px 490px;
+    }
+
+    .selectGameMode .pvc, 
+    .selectGameMode .pvp {
+        width: 460px;
+        height: 67px;
+    }
+
+    .selectGameMode .pvc,
+    .selectGameMode .pvp {
+        font-size: 20px;
+        letter-spacing: 1.25px;
+    }
+
+    .game--container {
+        width: 460px;
+        height: 623px;
+        margin: 200px 154px;
+    }
+
+    .topBar {
+        width: 457px;
+        height: 52px;
+        margin-bottom: 19px;
+    }
+
+    .topBar p {
+        width: 140px;
+        height: 52px;
+    }
+
+    .topBar p img {
+        width: 20px;
+    }
+
+    .topBar p h6 {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+
+    .topBar button {
+        width: 52px;
+        height: 52px;
+    }
+
+    .topBar button img {
+        width: 20px;
+    }
+
+    .gameBoard {
+        width: 460px;
+        height: 461px;
+    }
+
+    .board--row {
+        width: 460px;
+        height: 141px;
+    }
+
+    .square--button {
+        width: 140px;
+        height: 140px;
+    }
+
+    .scoreBoard {
+        width: 459px;
+        height: 72px;
+    }
+
+    .scoreX, .scoreO, .scoreTie {
+        width: 140px;
+        height: 72px;
+    }
+
+    .scoreX p, .scoreO p, .scoreTie p {
+        font-size: 14px;
+        letter-spacing: 0.88px;
+    }
+
+    .scoreX h6, .scoreO h6, .scoreTie h6 {
+        margin-top: 5px;
+        font-size: 24px;
+        letter-spacing: 1.5px;
+    }
+
+    .game--over--container {
+        height: 266px;
+        padding: 45px 138.5px;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+}
