@@ -224,6 +224,7 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 64px;
+    width: 327px;
 }
 
 .topBar img {
@@ -341,6 +342,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0;
+    width: 327px;
 }
 
 .scoreX {
@@ -687,6 +689,7 @@ body {
     .topBar p {
         width: 140px;
         height: 52px;
+        margin-right: 20px;
     }
 
     .topBar p img {
