@@ -94,7 +94,7 @@ body {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    width: 131.99px;
+    width: 49%;
     height: 54px;
 }
 
@@ -102,13 +102,36 @@ body {
     background-color: #A8BFC9;
 }
 
+.oIs:hover {
+    background-color: #A8BFC90D;
+}
+
+.oIs.active:hover {
+    background-color: #A8BFC9;
+}
+
 .xIs.active {
     background-color: #A8BFC9;
 }
 
+.xIs:hover {
+    background-color: #A8BFC90D;
+}
+
+.xIs.active:hover {
+    background-color: #A8BFC9;
+}
+
+
 .options button img {
     width: 24px;
 }
+
+/* .options button:hover {
+    background-color: #A8BFC9;
+    opacity: 5%;
+} */
+
 
 
 
@@ -126,6 +149,7 @@ body {
     border: none;
     margin-bottom: 16px;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
 
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
@@ -136,6 +160,15 @@ body {
     color: #1A2A33;
 }
 
+.selectGameMode .pvc:hover {
+    background-color: #FFC860;
+}
+
+.selectGameMode .pvc:active {
+    transform: scale(0.95);
+    background-color: #FFC860;
+}
+
 .selectGameMode .pvp {
     background-color: #31C3BD;
     box-shadow: inset 0px -8px 0px #118C87;
@@ -143,6 +176,7 @@ body {
     height: 56px;
     border: none;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
 
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
@@ -151,6 +185,15 @@ body {
     text-align: center;
     letter-spacing: 1px;
     color: #1A2A33;
+}
+
+.selectGameMode .pvp:hover {
+    background-color: #65E9E4;
+}
+
+.selectGameMode .pvp:active {
+    transform: scale(0.95);
+    background-color: #65E9E4;
 }
 
 /*  */
@@ -218,6 +261,10 @@ body {
     width: 40px;
     height: 40px;
     border: none;
+}
+
+.topBar button:hover {
+    background-color: #DBE8ED;
 }
 
 .topBar button img {
@@ -432,15 +479,28 @@ body {
     box-shadow: inset 0px -4px 0px #118C87;
 }
 
+.handleMainMenu:hover {
+    background-color: #65E9E4;
+}
+
 .handleQuit {
     background-color: #A8BFC9;;
     box-shadow: inset 0px -4px 0px #6B8997;
+}
+
+.handleQuit:hover {
+    background-color: #DBE8ED;
 }
 
 .handleNRound {
     background-color: #F2B137;
     box-shadow: inset 0px -4px 0px #CC8B13;
 }
+
+.handleNRound:hover {
+    background-color: #FFC860;
+}
+
 
 /*  */
 /* -----------------EXIT PAGE------------------ */
@@ -506,9 +566,17 @@ body {
     box-shadow: inset 0px -4px 0px #6B8997;
 }
 
+.hCancle:hover {
+    background-color: #DBE8ED;
+}
+
 .hRestart {
     background-color: #F2B137;
     box-shadow: inset 0px -4px 0px #CC8B13;
+}
+
+.hRestart:hover {
+    background-color: #FFC860;
 }
 
 .hMenu {
@@ -516,7 +584,15 @@ body {
     box-shadow: inset 0px -4px 0px #118C87;
 }
 
+.hMenu:hover {
+    background-color: #65E9E4;
+}
+
 .hQuit {
     background-color: #A8BFC9;
     box-shadow: inset 0px -4px 0px #6B8997;
+}
+
+.hQuit:hover {
+    background-color: #DBE8ED;
 }
