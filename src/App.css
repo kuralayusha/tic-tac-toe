@@ -154,7 +154,7 @@ body {
     border: none;
     margin-bottom: 16px;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.1s ease-in-out;
 
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
@@ -181,7 +181,7 @@ body {
     height: 56px;
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.1s ease-in-out;
 
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
@@ -266,9 +266,15 @@ body {
     width: 40px;
     height: 40px;
     border: none;
+    transition: all 0.1s ease-in-out;
 }
 
 .topBar button:hover {
+    background-color: #DBE8ED;
+}
+
+.topBar button:active {
+    transform: scale(0.95);
     background-color: #DBE8ED;
 }
 
@@ -473,10 +479,10 @@ body {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
     font-size: 16px;
-    /* line-height: 20px; */
     text-align: center;
     letter-spacing: 0.902px;
     color: #1A2A33;
+    transition: all 0.2s ease-in-out;
 }
 
 .handleMainMenu {
@@ -485,6 +491,11 @@ body {
 }
 
 .handleMainMenu:hover {
+    background-color: #65E9E4;
+}
+
+.handleMainMenu:active {
+    transform: scale(0.95);
     background-color: #65E9E4;
 }
 
@@ -497,12 +508,22 @@ body {
     background-color: #DBE8ED;
 }
 
+.handleQuit:active {
+    transform: scale(0.95);
+    background-color: #DBE8ED;
+}
+
 .handleNRound {
     background-color: #F2B137;
     box-shadow: inset 0px -4px 0px #CC8B13;
 }
 
 .handleNRound:hover {
+    background-color: #FFC860;
+}
+
+.handleNRound:active {
+    transform: scale(0.95);
     background-color: #FFC860;
 }
 
@@ -564,6 +585,7 @@ body {
     text-align: center;
     letter-spacing: 1px;
     color: #1A2A33;
+    transition: all 0.2s ease-in-out;
 }
 
 .hCancle {
@@ -575,12 +597,22 @@ body {
     background-color: #DBE8ED;
 }
 
+.hCancle:active {
+    transform: scale(0.95);
+    background-color: #A8BFC9;
+}
+
 .hRestart {
     background-color: #F2B137;
     box-shadow: inset 0px -4px 0px #CC8B13;
 }
 
 .hRestart:hover {
+    background-color: #FFC860;
+}
+
+.hRestart:active {
+    transform: scale(0.95);
     background-color: #FFC860;
 }
 
@@ -593,12 +625,22 @@ body {
     background-color: #65E9E4;
 }
 
+.hMenu:active {
+    transform: scale(0.95);
+    background-color: #65E9E4;
+}
+
 .hQuit {
     background-color: #A8BFC9;
     box-shadow: inset 0px -4px 0px #6B8997;
 }
 
 .hQuit:hover {
+    background-color: #DBE8ED;
+}
+
+.hQuit:active {
+    transform: scale(0.95);
     background-color: #DBE8ED;
 }
 
