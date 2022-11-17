@@ -27,7 +27,7 @@ function Pvc({
     '',
     '',
   ])
-  const [isX, setIsX] = useState(true)
+  const [isTurnOfX, setIsTurnOfX] = useState(true)
   const [scoreX, setScoreX] = useState(0)
   const [scoreO, setScoreO] = useState(0)
   const [scoreTie, setScoreTie] = useState(0)
@@ -39,7 +39,7 @@ function Pvc({
   let status
   let turn
 
-  turn = isX ? 'X' : 'O'
+  turn = isTurnOfX ? 'X' : 'O'
   if (winner === 'X') {
     turn = 'X TURN'
   } else if (winner === 'O') {
@@ -81,7 +81,7 @@ function Pvc({
       console.log('Tie score + 1')
       return
     }
-  }, [squares, winner, isX])
+  }, [squares, winner, isTurnOfX])
 
   function calculateWinner(squares) {
     // console.log('winner bulmayı denedim')
@@ -118,7 +118,7 @@ function Pvc({
       <Square
         value={squares[i]}
         onClick={() => handleClick(i)}
-        isX={isX}
+        isTurnOfX={isTurnOfX}
       />
     )
   }
@@ -126,11 +126,13 @@ function Pvc({
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
       return
+    } else if (isTurnOfX && playerOneIcon !== 'X') {
+      return
     }
 
-    squares[i] = isX ? 'X' : 'O'
+    squares[i] = isTurnOfX ? 'X' : 'O'
     setSquares(squares)
-    setIsX(!isX)
+    setIsTurnOfX(!isTurnOfX)
   }
 
   useEffect(() => {
@@ -142,14 +144,17 @@ function Pvc({
       console.log("it's cpu turn")
       setTimeout(() => {
         console.log('cpu turn started')
-        if ((isX && cpuIcon === 'X') || (!isX && cpuIcon === 'O')) {
+        if (
+          (isTurnOfX && cpuIcon === 'X') ||
+          (!isTurnOfX && cpuIcon === 'O')
+        ) {
           console.log('cpu turn accepted')
           handleCpuTurn()
-          setIsX(!isX)
+          setIsTurnOfX(!isTurnOfX)
         }
-      }, 500)
+      }, 2000)
     }
-  }, [squares, isX, cpuIcon])
+  }, [squares, isTurnOfX, cpuIcon])
 
   function handleCpuTurn() {
     const emptySquares = squares
@@ -215,7 +220,7 @@ function Pvc({
           <ExitPage
             setPage={setPage}
             setSquares={setSquares}
-            setIsX={setIsX}
+            setIsTurnOfX={setIsTurnOfX}
             setAskExit={setAskExit}
             setScoreX={setScoreX}
             setScoreO={setScoreO}
@@ -231,7 +236,7 @@ function Pvc({
             winner={winner}
             gameMode={gameMode}
             setPage={setPage}
-            setIsX={setIsX}
+            setIsTurnOfX={setIsTurnOfX}
             setSquares={setSquares}
             setShowGameOver={setShowGameOver}
             setScoreX={setScoreX}

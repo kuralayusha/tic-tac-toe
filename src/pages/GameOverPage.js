@@ -4,7 +4,7 @@ import fullOIcon from '../assets/icon-o.svg'
 import emptyOIcon from '../assets/icon-o-outline.svg'
 
 function GameOverPage({
-  setIsX,
+  setIsTurnOfX,
   setPage,
   setScoreX,
   setScoreO,
@@ -24,14 +24,14 @@ function GameOverPage({
   function handleNextRound() {
     setSquares(['', '', '', '', '', '', '', '', ''])
     setShowGameOver(false)
-    setIsX(true)
+    setIsTurnOfX(true)
   }
 
   function handleMainMenu() {
     setSquares(['', '', '', '', '', '', '', '', ''])
     setPlayerOneIcon('O')
     setGameMode('')
-    setIsX(true)
+    setIsTurnOfX(true)
     setScoreX(0)
     setScoreO(0)
     setScoreTie(0)

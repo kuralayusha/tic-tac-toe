@@ -1,7 +1,7 @@
 function ExitPage({
   setPage,
   setAskExit,
-  setIsX,
+  setIsTurnOfX,
   setSquares,
   setScoreX,
   setScoreO,
@@ -15,7 +15,7 @@ function ExitPage({
 
   function handleRestart() {
     setSquares(['', '', '', '', '', '', '', '', ''])
-    setIsX(true)
+    setIsTurnOfX(true)
     setScoreX(0)
     setScoreO(0)
     setScoreTie(0)
@@ -30,7 +30,7 @@ function ExitPage({
     setSquares(['', '', '', '', '', '', '', '', ''])
     setPlayerOneIcon('O')
     setGameMode('')
-    setIsX(true)
+    setIsTurnOfX(true)
     setAskExit(false)
     setScoreX(0)
     setScoreO(0)

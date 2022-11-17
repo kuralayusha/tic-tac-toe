@@ -1,15 +1,13 @@
 import fullXIcon from '../assets/icon-x.svg'
-import emptyXIcon from '../assets/icon-x-outline.svg'
 import fullOIcon from '../assets/icon-o.svg'
-import emptyOIcon from '../assets/icon-o-outline.svg'
 
-function Square({ value, onClick, isX }) {
+function Square({ value, onClick, isTurnOfX }) {
   return (
     <button
       className={
         value
           ? 'square--button'
-          : isX
+          : isTurnOfX
           ? 'square--button turnX'
           : 'square--button turnO'
       }

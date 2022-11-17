@@ -26,7 +26,7 @@ function Pvp({
     '',
     '',
   ])
-  const [isX, setIsX] = useState(true)
+  const [isTurnOfX, setIsTurnOfX] = useState(true)
   const [scoreX, setScoreX] = useState(0)
   const [scoreO, setScoreO] = useState(0)
   const [scoreTie, setScoreTie] = useState(0)
@@ -37,7 +37,7 @@ function Pvp({
   let status
   let turn
 
-  turn = isX ? 'X' : 'O'
+  turn = isTurnOfX ? 'X' : 'O'
   if (winner === 'X') {
     turn = 'X TURN'
   } else if (winner === 'O') {
@@ -49,9 +49,9 @@ function Pvp({
       return
     }
 
-    squares[i] = isX ? 'X' : 'O'
+    squares[i] = isTurnOfX ? 'X' : 'O'
     setSquares(squares)
-    setIsX(!isX)
+    setIsTurnOfX(!isTurnOfX)
   }
 
   useEffect(() => {
@@ -74,7 +74,7 @@ function Pvp({
     } else if (status === 'X') {
       setScoreX(scoreX + 1)
     }
-  }, [squares, isX, winner])
+  }, [squares, isTurnOfX, winner])
 
   function calculateWinner(squares) {
     // console.log('winner bulmayı denedim')
@@ -111,7 +111,7 @@ function Pvp({
       <Square
         value={squares[i]}
         onClick={() => handleClick(i)}
-        isX={isX}
+        isTurnOfX={isTurnOfX}
       />
     )
   }
@@ -165,7 +165,7 @@ function Pvp({
           <ExitPage
             setPage={setPage}
             setSquares={setSquares}
-            setIsX={setIsX}
+            setIsTurnOfX={setIsTurnOfX}
             setAskExit={setAskExit}
             setScoreX={setScoreX}
             setScoreO={setScoreO}
@@ -181,7 +181,7 @@ function Pvp({
             winner={winner}
             gameMode={gameMode}
             setPage={setPage}
-            setIsX={setIsX}
+            setIsTurnOfX={setIsTurnOfX}
             setSquares={setSquares}
             setShowGameOver={setShowGameOver}
             setScoreX={setScoreX}
