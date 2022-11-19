@@ -22,7 +22,7 @@ function HomePage(props) {
   function selectIconO() {
     props.setPlayerOneIcon('O')
   }
-  // console.log(props.playerOneIcon)
+
   return (
     <div className="homePage--container">
       <img src={logo} />

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import ExitPage from './ExitPage'
 import SquareForPvc from './SquareForPvc'
 import GameOverPage from './GameOverPage'
+import TopBar from '../components/TopBar'
 
 import logo from '../assets/logo.svg'
 import reStart from '../assets/icon-restart.svg'
@@ -69,13 +70,10 @@ function Pvc({
 
     if (status === 'X') {
       setScoreX(scoreX + 1)
-      // console.log('X score + 1')
     } else if (status === 'O') {
       setScoreO(scoreO + 1)
-      // console.log('O score + 1')
     } else if (status === 'ties') {
       setScoreTie(scoreTie + 1)
-      // console.log('Tie score + 1')
       return
     }
   }, [squares, winner, isTurnOfX])
@@ -105,11 +103,7 @@ function Pvc({
     return null
   }
 
-  function exitQuestion() {
-    setAskExit(true)
-  }
-
-  const renderSquare = (i) => {
+  const renderSquareForPvc = (i) => {
     return (
       <SquareForPvc
         value={squares[i]}
@@ -162,36 +156,25 @@ function Pvc({
     setSquares(squares)
   }
 
-  // console.log(cpuIcon)
-
   return (
     <div className="game--container">
-      <div className="topBar">
-        <img src={logo} />
-        <p>
-          <img src={turn === 'X' ? `${fullXIcon}` : `${fullOIcon}`} />
-          <h6>TURN</h6>
-        </p>
-        <button onClick={exitQuestion}>
-          <img src={reStart} />
-        </button>
-      </div>
+      <TopBar turn={turn} setAskExit={setAskExit} />
 
       <div className="gameBoard">
         <div className="board--row">
-          {renderSquare(0)}
-          {renderSquare(1)}
-          {renderSquare(2)}
+          {renderSquareForPvc(0)}
+          {renderSquareForPvc(1)}
+          {renderSquareForPvc(2)}
         </div>
         <div className="board--row">
-          {renderSquare(3)}
-          {renderSquare(4)}
-          {renderSquare(5)}
+          {renderSquareForPvc(3)}
+          {renderSquareForPvc(4)}
+          {renderSquareForPvc(5)}
         </div>
         <div className="board--row">
-          {renderSquare(6)}
-          {renderSquare(7)}
-          {renderSquare(8)}
+          {renderSquareForPvc(6)}
+          {renderSquareForPvc(7)}
+          {renderSquareForPvc(8)}
         </div>
       </div>
 
