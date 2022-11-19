@@ -1,14 +1,10 @@
 import { useEffect, useState } from 'react'
-import Square from '../components/SquareForPvp'
+// import pages for game over and exit
 import ExitPage from './ExitPage'
 import GameOverPage from './GameOverPage'
+// import components
 import TopBar from '../components/TopBar'
 import ScoreBoardForPvp from '../components/ScoreBoardForPvp'
-
-import logo from '../assets/logo.svg'
-import reStart from '../assets/icon-restart.svg'
-import fullXIcon from '../assets/icon-x-grey.svg'
-import fullOIcon from '../assets/icon-o-grey.svg'
 import SquareForPvp from '../components/SquareForPvp'
 
 function Pvp({
@@ -18,6 +14,7 @@ function Pvp({
   setGameMode,
   setPlayerOneIcon,
 }) {
+  // state for the 3x3 squares of the game board (9 squares)
   const [squares, setSquares] = useState([
     '',
     '',
@@ -29,24 +26,35 @@ function Pvp({
     '',
     '',
   ])
+
+  // state for the turn of X
   const [isTurnOfX, setIsTurnOfX] = useState(true)
+
+  // states for scores
   const [scoreX, setScoreX] = useState(0)
   const [scoreO, setScoreO] = useState(0)
   const [scoreTie, setScoreTie] = useState(0)
+
+  // state for exit page
   const [askExit, setAskExit] = useState(false)
+
+  // state for game over page
   const [showGameOver, setShowGameOver] = useState(false)
 
   const winner = calculateWinner(squares)
-  let status
-  let turn
+  let status // status is the text that shows the winner or the turn
+  let turn // turn is the text that shows the turn of X or O
 
+  // if there is a winner, the turn text will show the winner
   turn = isTurnOfX ? 'X' : 'O'
+  // if the winner is X, the turn text will show X TURN instead of X turn (to show that X won)
   if (winner === 'X') {
     turn = 'X TURN'
   } else if (winner === 'O') {
     turn = 'O TURN'
   }
 
+  // handles the click on the squares to place X or O
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
       return
@@ -57,6 +65,7 @@ function Pvp({
     setIsTurnOfX(!isTurnOfX)
   }
 
+  //if there is a winner, the game over page will show and the scores will be updated
   useEffect(() => {
     if (winner) {
       status = `${winner}`
@@ -79,8 +88,8 @@ function Pvp({
     }
   }, [squares, isTurnOfX, winner])
 
+  // this algorithm checks if there is a winner
   function calculateWinner(squares) {
-    // console.log('winner bulmayı denedim')
     const winningPatterns = [
       [0, 1, 2],
       [3, 4, 5],
@@ -105,10 +114,7 @@ function Pvp({
     return null
   }
 
-  function exitQuestion() {
-    setAskExit(true)
-  }
-
+  // this function prints the squares
   const renderSquare = (i) => {
     return (
       <SquareForPvp
@@ -118,6 +124,8 @@ function Pvp({
       />
     )
   }
+
+  // returns the main page of the game
   return (
     <div className="game--container">
       <TopBar turn={turn} setAskExit={setAskExit} />
