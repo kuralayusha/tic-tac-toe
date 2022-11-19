@@ -1,7 +1,7 @@
 import fullXIcon from '../assets/icon-x.svg'
 import fullOIcon from '../assets/icon-o.svg'
 
-function Square({ value, onClick, isTurnOfX }) {
+function SquareForPvp({ value, onClick, isTurnOfX }) {
   return (
     <button
       className={
@@ -20,4 +20,4 @@ function Square({ value, onClick, isTurnOfX }) {
   )
 }
 
-export default Square
+export default SquareForPvp

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import ExitPage from './ExitPage'
-import SquareForPvc from './SquareForPvc'
+import SquareForPvc from '../components/SquareForPvc'
 import GameOverPage from './GameOverPage'
 import TopBar from '../components/TopBar'
 import ScoreBoardForPvc from '../components/ScoreBoardForPvc'

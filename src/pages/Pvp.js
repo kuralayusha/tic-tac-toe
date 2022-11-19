@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Square from './Square'
+import Square from '../components/SquareForPvp'
 import ExitPage from './ExitPage'
 import GameOverPage from './GameOverPage'
 import TopBar from '../components/TopBar'
@@ -9,6 +9,7 @@ import logo from '../assets/logo.svg'
 import reStart from '../assets/icon-restart.svg'
 import fullXIcon from '../assets/icon-x-grey.svg'
 import fullOIcon from '../assets/icon-o-grey.svg'
+import SquareForPvp from '../components/SquareForPvp'
 
 function Pvp({
   playerOneIcon,
@@ -110,7 +111,7 @@ function Pvp({
 
   const renderSquare = (i) => {
     return (
-      <Square
+      <SquareForPvp
         value={squares[i]}
         onClick={() => handleClick(i)}
         isTurnOfX={isTurnOfX}
