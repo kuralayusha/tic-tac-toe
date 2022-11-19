@@ -4,6 +4,7 @@ import ExitPage from './ExitPage'
 import SquareForPvc from './SquareForPvc'
 import GameOverPage from './GameOverPage'
 import TopBar from '../components/TopBar'
+import ScoreBoardForPvc from '../components/ScoreBoardForPvc'
 
 import logo from '../assets/logo.svg'
 import reStart from '../assets/icon-restart.svg'
@@ -178,20 +179,12 @@ function Pvc({
         </div>
       </div>
 
-      <div className="scoreBoard">
-        <div className="scoreX">
-          {playerOneIcon === 'X' ? <p>X (YOU)</p> : <p>X (CPU)</p>}
-          <h6>{scoreX}</h6>
-        </div>
-        <div className="scoreTie">
-          <p>TIES</p>
-          <h6>{scoreTie}</h6>
-        </div>
-        <div className="scoreO">
-          {playerOneIcon === 'X' ? <p>O (CPU)</p> : <p>O (YOU)</p>}
-          <h6>{scoreO}</h6>
-        </div>
-      </div>
+      <ScoreBoardForPvc
+        playerOneIcon={playerOneIcon}
+        scoreX={scoreX}
+        scoreO={scoreO}
+        scoreTie={scoreTie}
+      />
       <div>
         {askExit && (
           <ExitPage
