@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import Square from './Square'
 import ExitPage from './ExitPage'
 import GameOverPage from './GameOverPage'
+import TopBar from '../components/TopBar'
+import ScoreBoardForPvp from '../components/ScoreBoardForPvp'
 
 import logo from '../assets/logo.svg'
 import reStart from '../assets/icon-restart.svg'
@@ -117,16 +119,7 @@ function Pvp({
   }
   return (
     <div className="game--container">
-      <div className="topBar">
-        <img src={logo} />
-        <p>
-          <img src={turn === 'X' ? `${fullXIcon}` : `${fullOIcon}`} />
-          <h6>TURN</h6>
-        </p>
-        <button onClick={exitQuestion}>
-          <img src={reStart} />
-        </button>
-      </div>
+      <TopBar turn={turn} setAskExit={setAskExit} />
 
       <div className="gameBoard">
         <div className="board--row">
@@ -146,20 +139,12 @@ function Pvp({
         </div>
       </div>
 
-      <div className="scoreBoard">
-        <div className="scoreX">
-          {playerOneIcon === 'X' ? <p>X (P1)</p> : <p>X (P2)</p>}
-          <h6>{scoreX}</h6>
-        </div>
-        <div className="scoreTie">
-          <p>TIES</p>
-          <h6>{scoreTie}</h6>
-        </div>
-        <div className="scoreO">
-          {playerOneIcon === 'X' ? <p>O (P2)</p> : <p>O (P1)</p>}
-          <h6>{scoreO}</h6>
-        </div>
-      </div>
+      <ScoreBoardForPvp
+        playerOneIcon={playerOneIcon}
+        scoreX={scoreX}
+        scoreO={scoreO}
+        scoreTie={scoreTie}
+      />
       <div>
         {askExit && (
           <ExitPage
