@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react'
 
+// import pages for game over and exit
 import ExitPage from './ExitPage'
-import SquareForPvc from '../components/SquareForPvc'
 import GameOverPage from './GameOverPage'
+
+// import components
+import SquareForPvc from '../components/SquareForPvc'
 import TopBar from '../components/TopBar'
 import ScoreBoardForPvc from '../components/ScoreBoardForPvc'
-
-import logo from '../assets/logo.svg'
-import reStart from '../assets/icon-restart.svg'
-import fullXIcon from '../assets/icon-x-grey.svg'
-import fullOIcon from '../assets/icon-o-grey.svg'
 
 function Pvc({
   playerOneIcon,
@@ -18,6 +16,7 @@ function Pvc({
   setGameMode,
   setPlayerOneIcon,
 }) {
+  // state for the 3x3 squares of the game board (9 squares)
   const [squares, setSquares] = useState([
     '',
     '',
@@ -29,33 +28,54 @@ function Pvc({
     '',
     '',
   ])
+
+  // state for the turn of X
   const [isTurnOfX, setIsTurnOfX] = useState(true)
+
+  // states for scores
   const [scoreX, setScoreX] = useState(0)
   const [scoreO, setScoreO] = useState(0)
   const [scoreTie, setScoreTie] = useState(0)
+
+  // state for exit page
   const [askExit, setAskExit] = useState(false)
+
+  // state for game over page
   const [showGameOver, setShowGameOver] = useState(false)
+
+  // state for the ingame icon of the computer
   const [cpuIcon, setCpuIcon] = useState('')
 
   const winner = calculateWinner(squares)
-  let status
-  let turn
+  let status // status is the text that shows the winner or the turn
+  let turn // turn is the text that shows the turn of X or O
 
+  // if there is a winner, the turn text will show the winner
   turn = isTurnOfX ? 'X' : 'O'
+
+  // if the winner is X, the turn text will show X TURN instead of X turn (to show that X won)
   if (winner === 'X') {
     turn = 'X TURN'
   } else if (winner === 'O') {
     turn = 'O TURN'
   }
 
-  useEffect(() => {
-    if (playerOneIcon === 'X') {
-      setCpuIcon('O')
-    } else {
-      setCpuIcon('X')
+  // handles the click on the squares to place X or O
+  function handleClick(i) {
+    if (calculateWinner(squares) || squares[i]) {
+      return
+    } else if (isTurnOfX && playerOneIcon !== 'X') {
+      return
+    } else if (!isTurnOfX && playerOneIcon !== 'O') {
+      return
     }
-  }, [])
 
+    squares[i] = isTurnOfX ? 'X' : 'O'
+    setSquares(squares)
+    setIsTurnOfX(!isTurnOfX)
+  }
+
+  //if there is a winner, the game over page will show and the scores will be updated
   useEffect(() => {
     if (winner) {
       status = `${winner}`
@@ -79,6 +99,16 @@ function Pvc({
     }
   }, [squares, winner, isTurnOfX])
 
+  // sets the icon of the computer
+  useEffect(() => {
+    if (playerOneIcon === 'X') {
+      setCpuIcon('O')
+    } else {
+      setCpuIcon('X')
+    }
+  }, [])
+
+  // this algorithm checks if there is a winner
   function calculateWinner(squares) {
     const winningPatterns = [
       [0, 1, 2],
@@ -104,6 +134,7 @@ function Pvc({
     return null
   }
 
+  // this function prints the squares
   const renderSquareForPvc = (i) => {
     return (
       <SquareForPvc
@@ -115,20 +146,7 @@ function Pvc({
     )
   }
 
-  function handleClick(i) {
-    if (calculateWinner(squares) || squares[i]) {
-      return
-    } else if (isTurnOfX && playerOneIcon !== 'X') {
-      return
-    } else if (!isTurnOfX && playerOneIcon !== 'O') {
-      return
-    }
-
-    squares[i] = isTurnOfX ? 'X' : 'O'
-    setSquares(squares)
-    setIsTurnOfX(!isTurnOfX)
-  }
-
+  // if there is no winner and the turn is on cpu, the cpu will make a move
   useEffect(() => {
     if (winner || squares.every((square) => square !== '')) {
       return
@@ -145,6 +163,7 @@ function Pvc({
     }
   }, [squares, isTurnOfX, cpuIcon])
 
+  // cpu algorithm
   function handleCpuTurn() {
     const emptySquares = squares
       .map((square, index) => (square === '' ? index : null))
@@ -157,6 +176,7 @@ function Pvc({
     setSquares(squares)
   }
 
+  // returns the main page of the game
   return (
     <div className="game--container">
       <TopBar turn={turn} setAskExit={setAskExit} />

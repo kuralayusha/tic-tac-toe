@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+
 // import pages for game over and exit
 import ExitPage from './ExitPage'
 import GameOverPage from './GameOverPage'
