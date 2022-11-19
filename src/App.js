@@ -7,11 +7,10 @@ import React from 'react'
 import ExitPage from './pages/ExitPage'
 
 function App() {
+  // state for wich page to render
   const [page, setPage] = useState('home')
   const [playerOneIcon, setPlayerOneIcon] = useState('O')
   const [gameMode, setGameMode] = useState('')
-
-  // console.log(gameMode)
 
   return (
     <div className="App">

@@ -21,6 +21,7 @@ function GameOverPage({
   let message = ''
   let title = ''
 
+  // changes the message and title depending on the winner
   if (gameMode === 'pvp') {
     if (playerOneIcon === 'X') {
       if (winner === 'X') {
