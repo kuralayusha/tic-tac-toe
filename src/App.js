@@ -11,7 +11,7 @@ function App() {
   const [playerOneIcon, setPlayerOneIcon] = useState('O')
   const [gameMode, setGameMode] = useState('')
 
-  console.log(gameMode)
+  // console.log(gameMode)
 
   return (
     <div className="App">

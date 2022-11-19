@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import ExitPage from './ExitPage'
-import Square from './Square'
+import SquareForPvc from './SquareForPvc'
 import GameOverPage from './GameOverPage'
 
 import logo from '../assets/logo.svg'
@@ -55,15 +55,12 @@ function Pvc({
   }, [])
 
   useEffect(() => {
-    console.log('in useEffect')
     if (winner) {
-      console.log('in useEffect winner')
       status = `${winner}`
       setTimeout(() => {
         setShowGameOver(true)
       }, 600)
     } else if (squares.every((square) => square !== '')) {
-      console.log('in useEffect tie')
       status = `ties`
       setTimeout(() => {
         setShowGameOver(true)
@@ -72,19 +69,18 @@ function Pvc({
 
     if (status === 'X') {
       setScoreX(scoreX + 1)
-      console.log('X score + 1')
+      // console.log('X score + 1')
     } else if (status === 'O') {
       setScoreO(scoreO + 1)
-      console.log('O score + 1')
+      // console.log('O score + 1')
     } else if (status === 'ties') {
       setScoreTie(scoreTie + 1)
-      console.log('Tie score + 1')
+      // console.log('Tie score + 1')
       return
     }
   }, [squares, winner, isTurnOfX])
 
   function calculateWinner(squares) {
-    // console.log('winner bulmayı denedim')
     const winningPatterns = [
       [0, 1, 2],
       [3, 4, 5],
@@ -115,10 +111,11 @@ function Pvc({
 
   const renderSquare = (i) => {
     return (
-      <Square
+      <SquareForPvc
         value={squares[i]}
         onClick={() => handleClick(i)}
         isTurnOfX={isTurnOfX}
+        playerOneIcon={playerOneIcon}
       />
     )
   }
@@ -128,6 +125,8 @@ function Pvc({
       return
     } else if (isTurnOfX && playerOneIcon !== 'X') {
       return
+    } else if (!isTurnOfX && playerOneIcon !== 'O') {
+      return
     }
 
     squares[i] = isTurnOfX ? 'X' : 'O'
@@ -136,19 +135,14 @@ function Pvc({
   }
 
   useEffect(() => {
-    console.log('looking to cpu')
     if (winner || squares.every((square) => square !== '')) {
-      console.log('exit game')
       return
     } else {
-      console.log("it's cpu turn")
       setTimeout(() => {
-        console.log('cpu turn started')
         if (
           (isTurnOfX && cpuIcon === 'X') ||
           (!isTurnOfX && cpuIcon === 'O')
         ) {
-          console.log('cpu turn accepted')
           handleCpuTurn()
           setIsTurnOfX(!isTurnOfX)
         }
@@ -168,7 +162,7 @@ function Pvc({
     setSquares(squares)
   }
 
-  console.log(cpuIcon)
+  // console.log(cpuIcon)
 
   return (
     <div className="game--container">

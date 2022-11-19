@@ -470,12 +470,12 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .game--over--options button {
     border-radius: 10px;
-    margin: 1px;
+    margin: 5px;
     padding: 12px;
     border: none;
     font-family: 'Outfit', sans-serif;
@@ -572,7 +572,7 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     margin-top: 20px;
 }
 
@@ -581,6 +581,8 @@ body {
     height: 52px;
     border-radius: 10px;
     border: none;
+    margin: 0 10px;
+
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
     font-size: 16px;
