@@ -4,6 +4,7 @@ import fullOIcon from '../assets/icon-o.svg'
 function SquareForPvc({ value, onClick, isTurnOfX, playerOneIcon }) {
   let nameClass
 
+  // changes the class name of the square depending on the value of the square and the player's icon
   if (playerOneIcon === 'X' && !value) {
     nameClass = 'square--button turnX'
   } else if (playerOneIcon === 'O' && !value) {
