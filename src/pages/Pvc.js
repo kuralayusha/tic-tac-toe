@@ -159,7 +159,7 @@ function Pvc({
           handleCpuTurn()
           setIsTurnOfX(!isTurnOfX)
         }
-      }, 500)
+      }, 600)
     }
   }, [squares, isTurnOfX, cpuIcon])
 
